@@ -24,10 +24,77 @@ element.onclick = function() {
 // Add a "checked" symbol when clicking on a list item
 const list = document.querySelector('ul');
 list.addEventListener('click', function(ev) {
+
+  let data = ev.target.firstChild.nodeValue;
   if (ev.target.tagName === 'LI') {
     ev.target.classList.toggle('checked');
   }
-}, false);
+
+  ev.target.parentElement.removeChild(ev.target);
+  if (data === "\u00D7") {
+    return false
+  }
+  moveItem('myUL2',data);
+
+}, false)
+
+// Transfer the item to done table
+
+const moveItem = (listName, data)=>{
+//create the li and append to the list
+  const list = document.getElementById(listName);
+  const li = document.createElement("li");
+  const t = document.createTextNode(data);
+  if (listName === "myUL2") {
+
+    li.className = "checked";
+  } else {
+      li.className = "";
+  }
+  li.appendChild(t);
+
+//Add close button into li
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  li.appendChild(span);
+  list.appendChild(li);
+
+  Array.from(close).forEach(element=>{
+    element.onclick = function() {
+      var div = this.parentElement;
+      div.parentElement.removeChild(div)
+    }
+  })
+
+
+
+
+}
+
+//Click again and it will be Transfered to un-done list
+
+const list2 = document.getElementById('myUL2');
+  list2.addEventListener('click', (ev) => {
+    let data = ev.target.firstChild.nodeValue;
+
+
+
+    ev.target.parentElement.removeChild(ev.target);
+    if (data === "\u00D7") {
+      return false
+    }
+    moveItem('myUL',data);
+
+})
+
+// moveItem in the done table when click again
+
+
+
+
+
 
 // Create a new list item when clicking on the "Add" button
 
