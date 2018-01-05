@@ -71,13 +71,13 @@ ul li.checked::before {
 }
 
 .close:hover {
-  background-color: #f44336;
+  background-color: #ef5350;
   color: white;
 }
 
 /* Style the header */
 .header {
-  background-color: #f44336;
+  background-color: #ef5350;
   padding: 30px 40px;
   color: white;
   text-align: center;
@@ -114,4 +114,18 @@ input {
 
 .addBtn:hover {
   background-color: #bbb;
+}
+
+
+@media screen and (min-width: 720px) {
+ .container {
+   display: flex;
+   width: 70%;
+   margin: 0 auto;
+   flex-flow: column;
+   box-shadow: 1px 1px 20px black;
+ }
+
+
+
 }
